@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ConfigModule } from '@nestjs/config'
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -18,9 +18,10 @@ import { ConfigModule } from '@nestjs/config'
       logging: false,
       migrations: [__dirname + '/database/migrations/*{.js,.ts}'],
       entities: [__dirname + '/**/*.entity{.js,.ts}']
-    })
+    }),
+    UsersModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule { }

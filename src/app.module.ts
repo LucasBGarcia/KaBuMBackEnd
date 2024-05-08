@@ -1,8 +1,17 @@
 import { Module } from '@nestjs/common';
 
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { ConfigModule } from '@nestjs/config'
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CartModule } from './cart/cart.module';
+import { CategoriesController } from './categories/categories.controller';
+import { CategoriesModule } from './categories/categories.module';
+import { ProductsModule } from './products/products.module';
+import { ProductsService } from './products/products.service';
 import { UsersModule } from './users/users.module';
+import { SubcategoriesModule } from './subcategories/subcategories.module';
+import { PurchasesHistoricModule } from './purchases_historic/purchases_historic.module';
+import { BrandsModule } from './brands/brands.module';
+
 
 @Module({
   imports: [
@@ -19,9 +28,15 @@ import { UsersModule } from './users/users.module';
       migrations: [__dirname + '/database/migrations/*{.js,.ts}'],
       entities: [__dirname + '/**/*.entity{.js,.ts}']
     }),
-    UsersModule
+    UsersModule,
+    CartModule,
+    ProductsModule,
+    CategoriesModule,
+    SubcategoriesModule,
+    PurchasesHistoricModule,
+    BrandsModule
   ],
-  controllers: [],
-  providers: [],
+  controllers: [CategoriesController],
+  providers: [ProductsService],
 })
 export class AppModule { }

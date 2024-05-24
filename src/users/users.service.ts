@@ -18,6 +18,10 @@ export class UsersService {
         return users
     }
 
+    async findOneWithUserName(userName: string) {
+        return await this.usersRepository.findOne({ where: { email: userName } });
+    }
+
     async createUser(user: UserDomain): Promise<UserDomain> {
         console.log(user)
         const createUser = await this.usersRepository.save(user);

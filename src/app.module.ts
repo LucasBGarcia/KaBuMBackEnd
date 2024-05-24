@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module';
 import { SubcategoriesModule } from './subcategories/subcategories.module';
 import { PurchasesHistoricModule } from './purchases_historic/purchases_historic.module';
 import { BrandsModule } from './brands/brands.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -34,7 +35,8 @@ import { BrandsModule } from './brands/brands.module';
     CategoriesModule,
     SubcategoriesModule,
     PurchasesHistoricModule,
-    BrandsModule
+    BrandsModule,
+    AuthModule
   ],
   controllers: [CategoriesController],
   providers: [ProductsService],

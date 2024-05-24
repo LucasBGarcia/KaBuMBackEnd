@@ -14,12 +14,16 @@ export class UsersService {
     async findAllUsers(): Promise<Users[]> {
         const users = await this.usersRepository.find();
         if (users.length === 0) throw new HttpException('Users not found', HttpStatus.NOT_FOUND)
-
         return users
     }
 
     async createUser(user: UserDomain): Promise<UserDomain> {
         console.log(user)
+        const UserEmail = await this.usersRepository.findOneBy({ email: user.email })
+        console.log('teste')
+
+        if (UserEmail) throw new HttpException('E-mail already registered', HttpStatus.BAD_REQUEST)
+
         const createUser = await this.usersRepository.save(user);
         return createUser;
     }
